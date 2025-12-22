@@ -1,0 +1,47 @@
+name: QA-Hub Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'QA-Hub/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./QA-Hub
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: ./QA-Hub
+        run: npx playwright install --with-deps
+
+      - name: Run TypeScript build
+        working-directory: ./QA-Hub
+        run: npm run build
+
+      - name: Run tests
+        working-directory: ./QA-Hub
+        run: npm test
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: QA-Hub/test-results/
+          retention-days: 30
