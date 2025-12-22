@@ -3,8 +3,10 @@
  * Demonstrates how to create and run tests
  */
 
-import { LoginTest, LoginErrorTest } from './src/__tests__/LoginTest';
-import { getBrowserConfig, getEnvironmentConfig } from './src/config';
+/* eslint-disable no-console */
+
+import { LoginTest, LoginErrorTest } from './__tests__/LoginTest';
+import { getBrowserConfig, getEnvironmentConfig } from './config';
 
 /**
  * Main execution function

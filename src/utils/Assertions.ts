@@ -14,11 +14,7 @@ export class Assertions {
    * @param message - Custom error message
    * @returns Assertion result
    */
-  public static assertEquals<T>(
-    actual: T,
-    expected: T,
-    message?: string
-  ): IAssertionResult {
+  public static assertEquals<T>(actual: T, expected: T, message?: string): IAssertionResult {
     const passed = actual === expected;
     const defaultMessage = `Expected ${String(expected)} but got ${String(actual)}`;
     const finalMessage = message ?? defaultMessage;
@@ -37,11 +33,7 @@ export class Assertions {
    * @param message - Custom error message
    * @returns Assertion result
    */
-  public static assertNotEquals<T>(
-    actual: T,
-    notExpected: T,
-    message?: string
-  ): IAssertionResult {
+  public static assertNotEquals<T>(actual: T, notExpected: T, message?: string): IAssertionResult {
     const passed = actual !== notExpected;
     const defaultMessage = `Expected value to not be ${String(notExpected)}`;
     const finalMessage = message ?? defaultMessage;
@@ -78,7 +70,8 @@ export class Assertions {
    * @returns Assertion result
    */
   public static assertFalse(value: unknown, message?: string): IAssertionResult {
-    const passed = !Boolean(value);
+    const passed =
+      value === false || value === null || value === undefined || value === 0 || value === '';
     const defaultMessage = `Expected falsy value but got ${String(value)}`;
     const finalMessage = message ?? defaultMessage;
 
@@ -178,11 +171,7 @@ export class Assertions {
    * @param message - Custom error message
    * @returns Assertion result
    */
-  public static assertMatches(
-    actual: string,
-    pattern: RegExp,
-    message?: string
-  ): IAssertionResult {
+  public static assertMatches(actual: string, pattern: RegExp, message?: string): IAssertionResult {
     const passed = pattern.test(actual);
     const defaultMessage = `Expected "${actual}" to match pattern ${pattern.toString()}`;
     const finalMessage = message ?? defaultMessage;

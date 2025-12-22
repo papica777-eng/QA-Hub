@@ -28,14 +28,7 @@ export interface ITestUser extends IUserCredentials {
  * Permission type
  * Defines granular permissions for authorization testing
  */
-export type Permission =
-  | 'read'
-  | 'write'
-  | 'delete'
-  | 'admin'
-  | 'moderate'
-  | 'report'
-  | 'export';
+export type Permission = 'read' | 'write' | 'delete' | 'admin' | 'moderate' | 'report' | 'export';
 
 /**
  * Test data model

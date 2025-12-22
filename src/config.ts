@@ -1,4 +1,5 @@
-import type { IBrowserConfig, IEnvironmentConfig } from './models/TestModels';
+import type { IBrowserConfig } from './core/interfaces';
+import type { IEnvironmentConfig } from './models/TestModels';
 
 /**
  * Default browser configuration
@@ -104,9 +105,7 @@ export const testEnvironment: IEnvironmentConfig = {
  * @param envName - Environment name
  * @returns Environment configuration
  */
-export function getEnvironmentConfig(
-  envName: string
-): IEnvironmentConfig {
+export function getEnvironmentConfig(envName: string): IEnvironmentConfig {
   const environments: Record<string, IEnvironmentConfig> = {
     development: devEnvironment,
     staging: stagingEnvironment,
@@ -127,9 +126,7 @@ export function getEnvironmentConfig(
  * @param mode - Browser mode
  * @returns Browser configuration
  */
-export function getBrowserConfig(
-  mode: BrowserMode
-): IBrowserConfig {
+export function getBrowserConfig(mode: BrowserMode): IBrowserConfig {
   const configs: Record<BrowserMode, IBrowserConfig> = {
     default: defaultBrowserConfig,
     debug: debugBrowserConfig,

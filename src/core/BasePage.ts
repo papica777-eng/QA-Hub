@@ -75,10 +75,7 @@ export abstract class BasePage {
    * @param locator - Element locator
    * @param timeout - Timeout in milliseconds
    */
-  protected async waitForElement(
-    locator: ILocator,
-    timeout?: number
-  ): Promise<void> {
+  protected async waitForElement(locator: ILocator, timeout?: number): Promise<void> {
     const waitTimeout = timeout ?? this.defaultTimeout;
     const selector = this.buildSelector(locator);
 
@@ -90,11 +87,10 @@ export abstract class BasePage {
       this.logger.debug(`Element visible: ${locator.description ?? selector}`);
     } catch (error) {
       this.logger.error(`Element not found: ${locator.description ?? selector}`);
-      throw new ElementNotFoundError(
-        locator.description ?? selector,
-        waitTimeout,
-        { strategy: locator.strategy, value: locator.value }
-      );
+      throw new ElementNotFoundError(locator.description ?? selector, waitTimeout, {
+        strategy: locator.strategy,
+        value: locator.value,
+      });
     }
   }
 
@@ -127,11 +123,7 @@ export abstract class BasePage {
    * @param text - Text to fill
    * @param options - Element options
    */
-  protected async fill(
-    locator: ILocator,
-    text: string,
-    options?: IElementOptions
-  ): Promise<void> {
+  protected async fill(locator: ILocator, text: string, options?: IElementOptions): Promise<void> {
     const selector = this.buildSelector(locator);
     await this.waitForElement(locator, options?.timeout);
 
@@ -163,11 +155,10 @@ export abstract class BasePage {
       });
 
       if (text === null) {
-        throw new ElementStateError(
-          locator.description ?? selector,
-          'has text content',
-          { strategy: locator.strategy, value: locator.value }
-        );
+        throw new ElementStateError(locator.description ?? selector, 'has text content', {
+          strategy: locator.strategy,
+          value: locator.value,
+        });
       }
 
       this.logger.debug(`Got text: ${locator.description ?? selector} = "${text}"`);
@@ -245,9 +236,10 @@ export abstract class BasePage {
         return `[placeholder="${locator.value}"]`;
       case 'label':
         return `label=${locator.value}`;
-      default:
+      default: {
         const exhaustiveCheck: never = locator.strategy;
         throw new Error(`Unknown locator strategy: ${String(exhaustiveCheck)}`);
+      }
     }
   }
 
@@ -277,11 +269,9 @@ export abstract class BasePage {
         timeout: timeout ?? this.defaultTimeout,
       });
     } catch (error) {
-      throw new TimeoutError(
-        'navigation',
-        timeout ?? this.defaultTimeout,
-        { url: this.getCurrentUrl() }
-      );
+      throw new TimeoutError('navigation', timeout ?? this.defaultTimeout, {
+        url: this.getCurrentUrl(),
+      });
     }
   }
 }

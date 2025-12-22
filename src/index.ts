@@ -1,6 +1,6 @@
 /**
  * QA-Hub - Enterprise-grade Test Automation Framework
- * 
+ *
  * This framework implements:
  * - Strict TypeScript type safety (no 'any' types)
  * - SOLID principles throughout the codebase
@@ -9,7 +9,7 @@
  * - Dependency inversion through interfaces
  * - Factory patterns for object creation
  * - Modular, maintainable architecture
- * 
+ *
  * @packageDocumentation
  */
 
@@ -64,15 +64,7 @@ export type {
 
 export { Assertions } from './utils/Assertions';
 export { TestDataFactory } from './utils/TestDataFactory';
-export {
-  StringUtils,
-  DateUtils,
-  RetryUtils,
-} from './utils/CommonUtils';
-export type {
-  CharsetType,
-  DateFormatType,
-  IRetryOptions,
-} from './utils/CommonUtils';
+export { StringUtils, DateUtils, RetryUtils } from './utils/CommonUtils';
+export type { CharsetType, DateFormatType, IRetryOptions } from './utils/CommonUtils';
 
 export { LoginTest, LoginErrorTest, NavigationTest } from './__tests__/LoginTest';

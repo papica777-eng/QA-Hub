@@ -97,9 +97,10 @@ export class HomePage extends BasePage {
         return this.locators.profileLink;
       case 'reports':
         return this.locators.reportsLink;
-      default:
+      default: {
         const exhaustiveCheck: never = section;
         throw new Error(`Unknown section: ${String(exhaustiveCheck)}`);
+      }
     }
   }
 

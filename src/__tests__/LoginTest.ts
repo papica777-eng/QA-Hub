@@ -23,7 +23,7 @@ export class LoginTest extends BaseTest {
   /**
    * Setup test - initializes page objects
    */
-  protected async setup(): Promise<void> {
+  protected override async setup(): Promise<void> {
     await super.setup();
     const page = this.getPage();
     this.loginPage = new LoginPage(page, this.testBaseUrl);
@@ -83,7 +83,7 @@ export class LoginErrorTest extends BaseTest {
   /**
    * Setup test - initializes page objects
    */
-  protected async setup(): Promise<void> {
+  protected override async setup(): Promise<void> {
     await super.setup();
     const page = this.getPage();
     this.loginPage = new LoginPage(page, this.testBaseUrl);
@@ -120,10 +120,7 @@ export class LoginErrorTest extends BaseTest {
     Assertions.assertNotNull(errorMessage, 'Error message should be displayed');
 
     if (errorMessage !== null) {
-      Assertions.assertTrue(
-        errorMessage.length > 0,
-        'Error message should not be empty'
-      );
+      Assertions.assertTrue(errorMessage.length > 0, 'Error message should not be empty');
       this.logger.info(`Error message: ${errorMessage}`);
     }
 
@@ -148,7 +145,7 @@ export class NavigationTest extends BaseTest {
   /**
    * Setup test - initializes page objects
    */
-  protected async setup(): Promise<void> {
+  protected override async setup(): Promise<void> {
     await super.setup();
     const page = this.getPage();
     this.loginPage = new LoginPage(page, this.testBaseUrl);
@@ -182,11 +179,7 @@ export class NavigationTest extends BaseTest {
       this.logger.info(`Testing navigation to ${section}`);
       await this.homePage.navigateToSection(section);
       const currentUrl = this.homePage['getCurrentUrl']();
-      Assertions.assertContains(
-        currentUrl,
-        section,
-        `URL should contain section: ${section}`
-      );
+      Assertions.assertContains(currentUrl, section, `URL should contain section: ${section}`);
     }
 
     this.logger.info('Navigation test completed successfully');

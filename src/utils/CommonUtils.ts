@@ -67,10 +67,7 @@ export class StringUtils {
    * @param charset - Character set to use
    * @returns Random string
    */
-  public static random(
-    length: number,
-    charset: CharsetType = 'alphanumeric'
-  ): string {
+  public static random(length: number, charset: CharsetType = 'alphanumeric'): string {
     const charsets: Record<CharsetType, string> = {
       alphanumeric: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
       alpha: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
@@ -178,11 +175,7 @@ export class DateUtils {
 /**
  * Date format type
  */
-export type DateFormatType =
-  | 'YYYY-MM-DD'
-  | 'DD/MM/YYYY'
-  | 'MM/DD/YYYY'
-  | 'YYYY-MM-DD HH:mm:ss';
+export type DateFormatType = 'YYYY-MM-DD' | 'DD/MM/YYYY' | 'MM/DD/YYYY' | 'YYYY-MM-DD HH:mm:ss';
 
 /**
  * Retry utility for flaky operations

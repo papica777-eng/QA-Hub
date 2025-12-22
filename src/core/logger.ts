@@ -35,12 +35,14 @@ export class ConsoleLogger implements ILogger {
   private log(level: string, message: string, args: readonly unknown[]): void {
     const timestamp = new Date().toISOString();
     const formattedMessage = `${timestamp} ${this.prefix} [${level}] ${message}`;
-    
+
+    /* eslint-disable no-console */
     if (args.length > 0) {
       console.log(formattedMessage, ...args);
     } else {
       console.log(formattedMessage);
     }
+    /* eslint-enable no-console */
   }
 }
 
@@ -57,7 +59,7 @@ export class LoggerFactory {
   }
 
   public static getInstance(): LoggerFactory {
-    if (!LoggerFactory.instance) {
+    if (LoggerFactory.instance === undefined) {
       LoggerFactory.instance = new LoggerFactory();
     }
     return LoggerFactory.instance;

@@ -109,27 +109,21 @@ export abstract class BaseTest {
    */
   private validateConfig(config: IBrowserConfig): void {
     if (config.timeout < 0) {
-      throw new ConfigurationError(
-        'timeout',
-        'Timeout must be a positive number',
-        { timeout: config.timeout }
-      );
+      throw new ConfigurationError('timeout', 'Timeout must be a positive number', {
+        timeout: config.timeout,
+      });
     }
 
     if (config.viewport.width <= 0 || config.viewport.height <= 0) {
-      throw new ConfigurationError(
-        'viewport',
-        'Viewport dimensions must be positive numbers',
-        { viewport: config.viewport }
-      );
+      throw new ConfigurationError('viewport', 'Viewport dimensions must be positive numbers', {
+        viewport: config.viewport,
+      });
     }
 
     if (config.slowMo !== undefined && config.slowMo < 0) {
-      throw new ConfigurationError(
-        'slowMo',
-        'slowMo must be a positive number',
-        { slowMo: config.slowMo }
-      );
+      throw new ConfigurationError('slowMo', 'slowMo must be a positive number', {
+        slowMo: config.slowMo,
+      });
     }
   }
 

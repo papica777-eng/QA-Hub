@@ -12,10 +12,7 @@ export class TestDataFactory {
    * @param password - Password
    * @returns User credentials
    */
-  public static createUserCredentials(
-    username: string,
-    password: string
-  ): IUserCredentials {
+  public static createUserCredentials(username: string, password: string): IUserCredentials {
     return {
       username,
       password,
@@ -87,12 +84,15 @@ export class TestDataFactory {
    * @returns Test user with full permissions
    */
   public static createFullAccessUser(): ITestUser {
-    return this.createTestUser(
-      'fullaccess',
-      'FullAccess@123',
-      'Full Access User',
-      ['read', 'write', 'delete', 'admin', 'moderate', 'report', 'export']
-    );
+    return this.createTestUser('fullaccess', 'FullAccess@123', 'Full Access User', [
+      'read',
+      'write',
+      'delete',
+      'admin',
+      'moderate',
+      'report',
+      'export',
+    ]);
   }
 
   /**
@@ -100,12 +100,7 @@ export class TestDataFactory {
    * @returns Test user with read-only permissions
    */
   public static createReadOnlyUser(): ITestUser {
-    return this.createTestUser(
-      'readonly',
-      'ReadOnly@123',
-      'Read Only User',
-      ['read']
-    );
+    return this.createTestUser('readonly', 'ReadOnly@123', 'Read Only User', ['read']);
   }
 
   /**

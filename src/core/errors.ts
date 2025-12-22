@@ -27,10 +27,7 @@ export class ElementNotFoundError extends QAFrameworkError {
   public readonly locator: string;
 
   constructor(locator: string, timeout: number, context?: Record<string, unknown>) {
-    super(
-      `Element not found: ${locator} within ${timeout}ms`,
-      context
-    );
+    super(`Element not found: ${locator} within ${timeout}ms`, context);
     this.locator = locator;
   }
 }
@@ -42,15 +39,8 @@ export class ElementStateError extends QAFrameworkError {
   public readonly locator: string;
   public readonly expectedState: string;
 
-  constructor(
-    locator: string,
-    expectedState: string,
-    context?: Record<string, unknown>
-  ) {
-    super(
-      `Element ${locator} is not in expected state: ${expectedState}`,
-      context
-    );
+  constructor(locator: string, expectedState: string, context?: Record<string, unknown>) {
+    super(`Element ${locator} is not in expected state: ${expectedState}`, context);
     this.locator = locator;
     this.expectedState = expectedState;
   }
@@ -101,8 +91,16 @@ export class AssertionError extends QAFrameworkError {
   public readonly expected: unknown;
   public readonly actual: unknown;
 
-  constructor(expected: unknown, actual: unknown, message: string, context?: Record<string, unknown>) {
-    super(`Assertion failed: ${message}. Expected: ${String(expected)}, Actual: ${String(actual)}`, context);
+  constructor(
+    expected: unknown,
+    actual: unknown,
+    message: string,
+    context?: Record<string, unknown>
+  ) {
+    super(
+      `Assertion failed: ${message}. Expected: ${String(expected)}, Actual: ${String(actual)}`,
+      context
+    );
     this.expected = expected;
     this.actual = actual;
   }
