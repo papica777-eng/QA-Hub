@@ -111,6 +111,14 @@ export class HomePage extends BasePage {
   public async verifyPageTitle(): Promise<string> {
     return await this.getTitle();
   }
+
+  /**
+   * Get current page URL
+   * @returns Current URL
+   */
+  public getCurrentPageUrl(): string {
+    return this.getCurrentUrl();
+  }
 }
 
 /**

@@ -178,7 +178,7 @@ export class NavigationTest extends BaseTest {
     for (const section of sections) {
       this.logger.info(`Testing navigation to ${section}`);
       await this.homePage.navigateToSection(section);
-      const currentUrl = this.homePage['getCurrentUrl']();
+      const currentUrl = this.homePage.getCurrentPageUrl();
       Assertions.assertContains(currentUrl, section, `URL should contain section: ${section}`);
     }
 
