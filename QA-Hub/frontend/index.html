@@ -7,7 +7,101 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root{--primary-color:#00d9ff;--secondary-color:#7c3aed;--success-color:#10b981;--warning-color:#f59e0b;--error-color:#ef4444;--info-color:#3b82f6;--background-color:#0a0a0f;--secondary-background-color:#111118;--tertiary-background-color:#1a1a24;--card-background:#16161e;--text-color:#e4e4e7;--subtle-text-color:#71717a;--border-color:#27272a;--input-bg-color:#1e1e28;--radius-default:12px;--radius-small:8px;--transition-default:all .3s ease}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Montserrat',sans-serif;background:var(--background-color);color:var(--text-color);line-height:1.6;overflow-x:hidden}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--secondary-background-color)}::-webkit-scrollbar-thumb{background:var(--primary-color);border-radius:4px}header{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-color);z-index:1000;padding:15px 0}.header-container{max-width:1400px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;font-family:'Fira Code',monospace;font-size:1.5rem;font-weight:700;color:var(--primary-color);text-decoration:none}.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}nav ul{display:flex;gap:30px;list-style:none}nav a{color:var(--text-color);text-decoration:none;font-weight:500;transition:var(--transition-default)}nav a:hover{color:var(--primary-color)}.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 30px 60px;background:radial-gradient(ellipse at center,rgba(0,217,255,.05) 0,transparent 70%)}.hero-content{max-width:1200px;text-align:center}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.3);padding:8px 20px;border-radius:50px;font-size:.9rem;color:var(--primary-color);margin-bottom:30px}.hero-badge .status-dot{width:8px;height:8px;background:var(--success-color);border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}.hero h1{font-size:4rem;font-weight:700;margin-bottom:20px;background:linear-gradient(135deg,var(--text-color) 0,var(--primary-color) 50%,var(--secondary-color) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{font-size:1.3rem;color:var(--subtle-text-color);max-width:700px;margin:0 auto 40px}.hero-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:var(--radius-default);font-weight:600;text-decoration:none;transition:var(--transition-default);cursor:pointer;border:none;font-size:1rem}.btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:var(--background-color)}.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,217,255,.3)}.btn-secondary{background:0 0;border:2px solid var(--primary-color);color:var(--primary-color)}.btn-secondary:hover{background:rgba(0,217,255,.1);transform:translateY(-3px)}section{padding:100px 30px}.section-header{text-align:center;margin-bottom:60px}.section-header h2{font-size:2.5rem;margin-bottom:15px}.section-header p{color:var(--subtle-text-color);max-width:600px;margin:0 auto}.dashboard-section{background:var(--secondary-background-color)}.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}.stat-card{background:var(--card-background);border:1px solid var(--border-color);border-radius:var(--radius-default);padding:30px;text-align:center;transition:var(--transition-default);position:relative;overflow:hidden}.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color))}.stat-card:hover{transform:translateY(-5px);border-color:var(--primary-color);box-shadow:0 10px 40px rgba(0,217,255,.1)}.stat-icon{width:60px;height:60px;background:rgba(0,217,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem;color:var(--primary-color)}.stat-value{font-size:2.5rem;font-weight:700;font-family:'Fira Code',monospace}.stat-label{color:var(--subtle-text-color);margin-top:5px}.stat-change{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:.85rem;padding:4px 10px;border-radius:20px}.stat-change.positive{background:rgba(16,185,129,.1);color:var(--success-color)}.test-results-section{background:var(--background-color)}.results-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px}@media (max-width:900px){.results-container{grid-template-columns:1fr}.hero h1{font-size:2.5rem}}.results-card{background:var(--card-background);border:1px solid var(--border-color);border-radius:var(--radius-default);overflow:hidden}.results-card-header{padding:20px 25px;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}.results-card-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px}.results-card-body{padding:25px}.progress-container{margin-bottom:20px}.progress-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.9rem}.progress-bar{height:10px;background:var(--input-bg-color);border-radius:5px;overflow:hidden}.progress-fill{height:100%;border-radius:5px;transition:width 1s ease}.progress-fill.success{background:linear-gradient(90deg,var(--success-color),#34d399)}.progress-fill.error{background:linear-gradient(90deg,var(--error-color),#f87171)}.test-list{list-style:none}.test-item{display:flex;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid var(--border-color)}.test-item:last-child{border-bottom:none}.test-status{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem}.test-status.passed{background:rgba(16,185,129,.1);color:var(--success-color)}.test-status.failed{background:rgba(239,68,68,.1);color:var(--error-color)}.test-info{flex:1}.test-name{font-weight:500;margin-bottom:3px}.test-duration{font-size:.85rem;color:var(--subtle-text-color);font-family:'Fira Code',monospace}.terminal-section{background:var(--secondary-background-color)}.terminal-container{max-width:1000px;margin:0 auto}.terminal{background:var(--card-background);border:1px solid var(--border-color);border-radius:var(--radius-default);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}.terminal-header{background:var(--tertiary-background-color);padding:12px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border-color)}.terminal-dot{width:12px;height:12px;border-radius:50%}.terminal-dot.red{background:#ff5f56}.terminal-dot.yellow{background:#ffbd2e}.terminal-dot.green{background:#27ca40}.terminal-title{margin-left:15px;font-family:'Fira Code',monospace;font-size:.85rem;color:var(--subtle-text-color)}.terminal-body{padding:25px;min-height:400px;max-height:500px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:.9rem;line-height:1.8}.terminal-output{white-space:pre-wrap;word-wrap:break-word}.terminal-input-line{display:flex;align-items:center;gap:10px;margin-top:15px}.terminal-prompt{color:var(--success-color)}.terminal-input{flex:1;background:0 0;border:none;color:var(--text-color);font-family:'Fira Code',monospace;font-size:.9rem;outline:0}.terminal-actions{display:flex;gap:10px;padding:15px 25px;border-top:1px solid var(--border-color);flex-wrap:wrap}.terminal-action-btn{padding:8px 16px;background:var(--input-bg-color);border:1px solid var(--border-color);border-radius:var(--radius-small);color:var(--text-color);font-family:'Fira Code',monospace;font-size:.8rem;cursor:pointer;transition:var(--transition-default)}.terminal-action-btn:hover{border-color:var(--primary-color);color:var(--primary-color)}.features-section{background:var(--background-color)}.features-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px}.feature-card{background:var(--card-background);border:1px solid var(--border-color);border-radius:var(--radius-default);padding:35px;transition:var(--transition-default)}.feature-card:hover{border-color:var(--primary-color);transform:translateY(-5px)}.feature-icon{width:50px;height:50px;background:linear-gradient(135deg,rgba(0,217,255,.1),rgba(124,58,237,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--primary-color);margin-bottom:20px}.feature-card h3{font-size:1.2rem;margin-bottom:12px}.feature-card p{color:var(--subtle-text-color);font-size:.95rem}footer{background:var(--secondary-background-color);border-top:1px solid var(--border-color);padding:40px 30px;text-align:center}.footer-links{display:flex;justify-content:center;gap:30px;margin-bottom:20px}.footer-links a{color:var(--subtle-text-color);text-decoration:none;transition:var(--transition-default)}.footer-links a:hover{color:var(--primary-color)}.footer-copyright{color:var(--subtle-text-color);font-size:.9rem}.cmd-clickable{color:var(--primary-color);cursor:pointer;text-decoration:underline}.cmd-clickable:hover{color:var(--secondary-color)}.loading{display:inline-block;width:20px;height:20px;border:2px solid var(--border-color);border-top-color:var(--primary-color);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.api-status{display:flex;align-items:center;gap:8px;font-size:.85rem}.api-status-dot{width:8px;height:8px;border-radius:50%}.api-status-dot.online{background:var(--success-color)}.api-status-dot.offline{background:var(--error-color)}
+        :root{--primary-color:#00d9ff;--secondary-color:#7c3aed;--success-color:#10b981;--warning-color:#f59e0b;--error-color:#ef4444;--background-color:#0a0a0f;--secondary-bg:#111118;--card-bg:#16161e;--text-color:#e4e4e7;--subtle-text:#71717a;--border-color:#27272a}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Montserrat',sans-serif;background:var(--background-color);color:var(--text-color);line-height:1.6}
+        header{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-color);z-index:1000;padding:15px 0}
+        .header-container{max-width:1400px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:12px;font-family:'Fira Code',monospace;font-size:1.5rem;font-weight:700;color:var(--primary-color);text-decoration:none}
+        .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#0a0a0f}
+        nav ul{display:flex;gap:30px;list-style:none;align-items:center}
+        nav a{color:var(--text-color);text-decoration:none;font-weight:500;transition:all .3s}
+        nav a:hover{color:var(--primary-color)}
+        .api-status{display:flex;align-items:center;gap:8px;font-size:.85rem;padding:6px 12px;background:var(--card-bg);border-radius:20px;border:1px solid var(--border-color)}
+        .api-status-dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite}
+        .api-status-dot.online{background:var(--success-color)}
+        .api-status-dot.offline{background:var(--error-color)}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 30px 60px;background:radial-gradient(ellipse at 20% 80%,rgba(0,217,255,.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.08) 0%,transparent 50%),var(--background-color)}
+        .hero-content{max-width:1200px;text-align:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.3);padding:10px 24px;border-radius:50px;font-size:.9rem;color:var(--primary-color);margin-bottom:30px}
+        .status-dot{width:8px;height:8px;background:var(--success-color);border-radius:50%;animation:pulse 2s infinite}
+        .hero h1{font-size:3.5rem;font-weight:700;margin-bottom:20px;background:linear-gradient(135deg,var(--text-color) 0%,var(--primary-color) 50%,var(--secondary-color) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:1.2rem;color:var(--primary-color);margin-bottom:10px;font-family:'Fira Code',monospace}
+        .hero p{font-size:1.1rem;color:var(--subtle-text);max-width:700px;margin:0 auto 40px}
+        .hero-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:12px;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none;font-size:1rem;font-family:'Montserrat',sans-serif}
+        .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#0a0a0f}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,217,255,.4)}
+        .btn-secondary{background:transparent;border:2px solid var(--primary-color);color:var(--primary-color)}
+        .btn-secondary:hover{background:rgba(0,217,255,.1);transform:translateY(-3px)}
+        section{padding:100px 30px}
+        .section-header{text-align:center;margin-bottom:60px}
+        .section-header h2{font-size:2.5rem;margin-bottom:15px;background:linear-gradient(135deg,var(--text-color),var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .section-header p{color:var(--subtle-text);max-width:600px;margin:0 auto}
+        .dashboard-section{background:var(--secondary-bg)}
+        .stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+        .stat-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:30px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+        .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color))}
+        .stat-card:hover{transform:translateY(-5px);border-color:var(--primary-color);box-shadow:0 15px 40px rgba(0,217,255,.15)}
+        .stat-icon{width:60px;height:60px;background:rgba(0,217,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem;color:var(--primary-color)}
+        .stat-value{font-size:2.5rem;font-weight:700;font-family:'Fira Code',monospace}
+        .stat-label{color:var(--subtle-text);margin-top:5px}
+        .stat-change{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:.85rem;padding:4px 10px;border-radius:20px}
+        .stat-change.positive{background:rgba(16,185,129,.1);color:var(--success-color)}
+        .results-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+        @media(max-width:900px){.results-container{grid-template-columns:1fr}.hero h1{font-size:2.5rem}}
+        .results-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;overflow:hidden}
+        .results-card-header{padding:20px 25px;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;background:#1a1a24}
+        .results-card-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px}
+        .results-card-body{padding:25px}
+        .progress-container{margin-bottom:20px}
+        .progress-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.9rem}
+        .progress-bar{height:10px;background:#1e1e28;border-radius:5px;overflow:hidden}
+        .progress-fill{height:100%;border-radius:5px;transition:width 1s ease}
+        .progress-fill.success{background:linear-gradient(90deg,var(--success-color),#34d399)}
+        .progress-fill.error{background:linear-gradient(90deg,var(--error-color),#f87171)}
+        .test-list{list-style:none}
+        .test-item{display:flex;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid var(--border-color)}
+        .test-item:last-child{border-bottom:none}
+        .test-status{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem}
+        .test-status.passed{background:rgba(16,185,129,.1);color:var(--success-color)}
+        .test-status.failed{background:rgba(239,68,68,.1);color:var(--error-color)}
+        .test-info{flex:1}
+        .test-name{font-weight:500;margin-bottom:3px}
+        .test-duration{font-size:.85rem;color:var(--subtle-text);font-family:'Fira Code',monospace}
+        .terminal-section{background:var(--secondary-bg)}
+        .terminal-container{max-width:1000px;margin:0 auto}
+        .terminal{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .terminal-header{background:#1a1a24;padding:12px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border-color)}
+        .terminal-dot{width:12px;height:12px;border-radius:50%}
+        .terminal-dot.red{background:#ff5f56}
+        .terminal-dot.yellow{background:#ffbd2e}
+        .terminal-dot.green{background:#27ca40}
+        .terminal-title{margin-left:15px;font-family:'Fira Code',monospace;font-size:.85rem;color:var(--subtle-text)}
+        .terminal-body{padding:25px;min-height:400px;max-height:500px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:.9rem;line-height:1.8}
+        .terminal-output{white-space:pre-wrap;word-wrap:break-word}
+        .terminal-input-line{display:flex;align-items:center;gap:10px;margin-top:15px}
+        .terminal-prompt{color:var(--success-color)}
+        .terminal-input{flex:1;background:transparent;border:none;color:var(--text-color);font-family:'Fira Code',monospace;font-size:.9rem;outline:none}
+        .terminal-actions{display:flex;gap:10px;padding:15px 25px;border-top:1px solid var(--border-color);flex-wrap:wrap}
+        .terminal-action-btn{padding:8px 16px;background:#1e1e28;border:1px solid var(--border-color);border-radius:8px;color:var(--text-color);font-family:'Fira Code',monospace;font-size:.8rem;cursor:pointer;transition:all .3s}
+        .terminal-action-btn:hover{border-color:var(--primary-color);color:var(--primary-color)}
+        .features-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px}
+        .feature-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:35px;transition:all .3s}
+        .feature-card:hover{border-color:var(--primary-color);transform:translateY(-5px)}
+        .feature-icon{width:50px;height:50px;background:linear-gradient(135deg,rgba(0,217,255,.1),rgba(124,58,237,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--primary-color);margin-bottom:20px}
+        .feature-card h3{font-size:1.2rem;margin-bottom:12px}
+        .feature-card p{color:var(--subtle-text);font-size:.95rem}
+        footer{background:var(--secondary-bg);border-top:1px solid var(--border-color);padding:40px 30px;text-align:center}
+        .footer-links{display:flex;justify-content:center;gap:30px;margin-bottom:20px}
+        .footer-links a{color:var(--subtle-text);text-decoration:none;transition:all .3s;display:flex;align-items:center;gap:8px}
+        .footer-links a:hover{color:var(--primary-color)}
+        .footer-copyright{color:var(--subtle-text);font-size:.9rem}
+        .cmd-clickable{color:var(--primary-color);cursor:pointer;text-decoration:underline}
+        .cmd-clickable:hover{color:var(--secondary-color)}
+        .loading{display:inline-block;width:20px;height:20px;border:2px solid var(--border-color);border-top-color:var(--primary-color);border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
     </style>
 </head>
 <body>
@@ -31,6 +125,7 @@
         <div class="hero-content">
             <div class="hero-badge"><span class="status-dot"></span>Enterprise Test Automation Framework</div>
             <h1>QA-Hub Dashboard</h1>
+            <p class="hero-subtitle">by Dimitar Prodromov</p>
             <p>Enterprise-grade test automation framework built with TypeScript, Playwright, and Python FastAPI backend.</p>
             <div class="hero-buttons">
                 <button class="btn btn-primary" id="runTestsBtn" onclick="runAllTests()"><i class="fas fa-play"></i>Run All Tests</button>
@@ -40,7 +135,7 @@
     </section>
 
     <section id="dashboard" class="dashboard-section">
-        <div class="section-header"><h2>Test Dashboard</h2><p>Real-time test execution metrics from the backend API</p></div>
+        <div class="section-header"><h2>Test Dashboard</h2><p>Real-time test execution metrics</p></div>
         <div class="stats-grid">
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-value" id="totalTests">--</div><div class="stat-label">Total Tests</div><span class="stat-change positive" id="totalTestsChange"></span></div>
             <div class="stat-card"><div class="stat-icon" style="color:var(--success-color);background:rgba(16,185,129,.1)"><i class="fas fa-trophy"></i></div><div class="stat-value" id="passRate">--%</div><div class="stat-label">Pass Rate</div><span class="stat-change positive" id="passRateChange"></span></div>
@@ -50,28 +145,28 @@
     </section>
 
     <section class="test-results-section">
-        <div class="section-header"><h2>Latest Test Run</h2><p>Results from the most recent test execution</p></div>
+        <div class="section-header"><h2>Latest Test Run</h2><p>Results from most recent execution</p></div>
         <div class="results-container">
             <div class="results-card">
                 <div class="results-card-header"><h3><i class="fas fa-chart-pie"></i> Test Summary</h3><span id="testSummaryStatus" style="color:var(--success-color)"><i class="fas fa-check"></i> Passed</span></div>
                 <div class="results-card-body">
-                    <div class="progress-container"><div class="progress-header"><span>Passed</span><span id="passedCount">--/-- (--)</span></div><div class="progress-bar"><div class="progress-fill success" id="passedBar" style="width:0"></div></div></div>
-                    <div class="progress-container"><div class="progress-header"><span>Failed</span><span id="failedCount">--/-- (--)</span></div><div class="progress-bar"><div class="progress-fill error" id="failedBar" style="width:0"></div></div></div>
+                    <div class="progress-container"><div class="progress-header"><span>Passed</span><span id="passedCount">--/--</span></div><div class="progress-bar"><div class="progress-fill success" id="passedBar" style="width:0"></div></div></div>
+                    <div class="progress-container"><div class="progress-header"><span>Failed</span><span id="failedCount">--/--</span></div><div class="progress-bar"><div class="progress-fill error" id="failedBar" style="width:0"></div></div></div>
                 </div>
             </div>
             <div class="results-card">
-                <div class="results-card-header"><h3><i class="fas fa-list"></i> Recent Tests</h3><span id="totalDuration" style="font-size:.85rem;color:var(--subtle-text-color)">--s total</span></div>
-                <div class="results-card-body"><ul class="test-list" id="testList"><li class="test-item"><div class="loading"></div><div class="test-info"><div class="test-name">Loading tests...</div></div></li></ul></div>
+                <div class="results-card-header"><h3><i class="fas fa-list"></i> Recent Tests</h3><span id="totalDuration" style="font-size:.85rem;color:var(--subtle-text)">--s total</span></div>
+                <div class="results-card-body"><ul class="test-list" id="testList"><li class="test-item"><div class="loading"></div><div class="test-info"><div class="test-name">Loading...</div></div></li></ul></div>
             </div>
         </div>
     </section>
 
     <section id="terminal" class="terminal-section">
-        <div class="section-header"><h2>Interactive Terminal</h2><p>Execute commands against the QA-Hub backend API</p></div>
+        <div class="section-header"><h2>Interactive Terminal</h2><p>Execute commands against the QA-Hub API</p></div>
         <div class="terminal-container">
             <div class="terminal">
-                <div class="terminal-header"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div><span class="terminal-title">qa-hub ~ backend connected</span></div>
-                <div class="terminal-body"><div class="terminal-output" id="terminalOutput"></div><div class="terminal-input-line"><span class="terminal-prompt">qa-hub $</span><input type="text" class="terminal-input" id="terminalInput" placeholder="Type a command..." autocomplete="off"></div></div>
+                <div class="terminal-header"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div><span class="terminal-title">dimitar@qa-hub ~ backend</span></div>
+                <div class="terminal-body"><div class="terminal-output" id="terminalOutput"></div><div class="terminal-input-line"><span class="terminal-prompt">qa-hub $</span><input type="text" class="terminal-input" id="terminalInput" placeholder="Type command..." autocomplete="off"></div></div>
                 <div class="terminal-actions">
                     <button class="terminal-action-btn" data-cmd="help">help</button>
                     <button class="terminal-action-btn" data-cmd="run-tests">run-tests</button>
@@ -85,22 +180,23 @@
     </section>
 
     <section id="features" class="features-section">
-        <div class="section-header"><h2>Framework Features</h2><p>Built with enterprise-grade standards and best practices</p></div>
+        <div class="section-header"><h2>Framework Features</h2><p>Enterprise-grade standards</p></div>
         <div class="features-grid">
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-server"></i></div><h3>Python FastAPI Backend</h3><p>RESTful API with automatic OpenAPI documentation, async support, and SQLite database.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Strict Type Safety</h3><p>Zero tolerance for any types. 100% type-safe TypeScript with comprehensive interfaces.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-cubes"></i></div><h3>SOLID Principles</h3><p>Clean architecture following all SOLID principles with dependency inversion.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-sitemap"></i></div><h3>Page Object Model</h3><p>Structured test automation with proper abstraction layers.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-database"></i></div><h3>SQLite Database</h3><p>Persistent storage for test results, configurations, and history.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-server"></i></div><h3>Python FastAPI Backend</h3><p>RESTful API with OpenAPI docs, async support, SQLite database.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Type Safety</h3><p>100% type-safe TypeScript with strict mode enabled.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-cubes"></i></div><h3>SOLID Principles</h3><p>Clean architecture with dependency inversion.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-sitemap"></i></div><h3>Page Object Model</h3><p>Structured automation with reusable components.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-database"></i></div><h3>SQLite Database</h3><p>Persistent storage for test results and history.</p></div>
             <div class="feature-card"><div class="feature-icon"><i class="fas fa-sync-alt"></i></div><h3>Real-time Updates</h3><p>Live dashboard with instant API communication.</p></div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-links"><a href="https://github.com/papica777-eng/QA-Hub" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="https://github.com/papica777-eng/QA-Hub/issues" target="_blank"><i class="fas fa-bug"></i> Issues</a></div>
-            <p class="footer-copyright">© 2024 QA-Hub | Built by Dimitar Prodromov</p>
+        <div class="footer-links">
+            <a href="https://github.com/papica777-eng/QA-Hub" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="mailto:papica777@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
         </div>
+        <p class="footer-copyright">© 2024 QA-Hub | Built by Dimitar Prodromov</p>
     </footer>
 
     <script>
@@ -108,76 +204,62 @@
         let apiOnline = false;
         const terminalOutput = document.getElementById('terminalOutput');
         const terminalInput = document.getElementById('terminalInput');
-        const actionButtons = document.querySelectorAll('.terminal-action-btn');
-        const apiStatusDot = document.getElementById('apiStatusDot');
-        const apiStatusText = document.getElementById('apiStatusText');
 
         async function checkApiHealth() {
             try {
-                const response = await fetch(`${API_BASE_URL}/health`, { method: 'GET', headers: { 'Accept': 'application/json' } });
-                if (response.ok) { apiOnline = true; apiStatusDot.classList.add('online'); apiStatusDot.classList.remove('offline'); apiStatusText.textContent = 'API Online'; return true; }
-            } catch (e) { }
-            apiOnline = false; apiStatusDot.classList.add('offline'); apiStatusDot.classList.remove('online'); apiStatusText.textContent = 'Demo Mode'; return false;
+                const r = await fetch(`${API_BASE_URL}/health`);
+                if (r.ok) { apiOnline = true; document.getElementById('apiStatusDot').classList.add('online'); document.getElementById('apiStatusText').textContent = 'Online'; return true; }
+            } catch (e) {}
+            apiOnline = false; document.getElementById('apiStatusDot').classList.add('offline'); document.getElementById('apiStatusText').textContent = 'Demo'; return false;
         }
 
-        async function fetchStats() { if (!apiOnline) return getDemoStats(); try { const response = await fetch(`${API_BASE_URL}/stats`); if (response.ok) return await response.json(); } catch (e) { } return getDemoStats(); }
-        async function fetchTests() { if (!apiOnline) return getDemoTests(); try { const response = await fetch(`${API_BASE_URL}/tests`); if (response.ok) return await response.json(); } catch (e) { } return getDemoTests(); }
-        async function runTests() { if (!apiOnline) return getDemoTestRun(); try { const response = await fetch(`${API_BASE_URL}/tests/run`, { method: 'POST' }); if (response.ok) return await response.json(); } catch (e) { } return getDemoTestRun(); }
-
         function getDemoStats() { return { totalTests: 24, passRate: 96, avgDuration: 1.2, coverage: 85, passed: 23, failed: 1 }; }
-        function getDemoTests() { return [{ id: 1, name: 'Login with valid credentials', status: 'passed', duration: 245 }, { id: 2, name: 'Navigate to dashboard', status: 'passed', duration: 312 }, { id: 3, name: 'Search functionality', status: 'failed', duration: 5000 }, { id: 4, name: 'User profile update', status: 'passed', duration: 189 }, { id: 5, name: 'Logout flow', status: 'passed', duration: 156 }]; }
-        function getDemoTestRun() { return { success: true, message: 'Tests executed (Demo Mode)', results: getDemoTests() }; }
+        function getDemoTests() { return [{ id: 1, name: 'Login with valid credentials', status: 'passed', duration: 245 },{ id: 2, name: 'Navigate to dashboard', status: 'passed', duration: 312 },{ id: 3, name: 'Search functionality', status: 'failed', duration: 5000 },{ id: 4, name: 'User profile update', status: 'passed', duration: 189 },{ id: 5, name: 'Logout flow', status: 'passed', duration: 156 }]; }
+        
+        async function fetchStats() { if (!apiOnline) return getDemoStats(); try { const r = await fetch(`${API_BASE_URL}/stats`); if (r.ok) return await r.json(); } catch (e) {} return getDemoStats(); }
+        async function fetchTests() { if (!apiOnline) return getDemoTests(); try { const r = await fetch(`${API_BASE_URL}/tests`); if (r.ok) return await r.json(); } catch (e) {} return getDemoTests(); }
+        async function runTestsAPI() { if (!apiOnline) return { success: true, message: 'Demo Mode', results: getDemoTests() }; try { const r = await fetch(`${API_BASE_URL}/tests/run`, { method: 'POST' }); if (r.ok) return await r.json(); } catch (e) {} return { success: true, message: 'Demo', results: getDemoTests() }; }
 
         async function updateDashboard() {
-            const stats = await fetchStats();
-            document.getElementById('totalTests').textContent = stats.totalTests;
-            document.getElementById('passRate').textContent = `${stats.passRate}%`;
-            document.getElementById('avgDuration').textContent = `${stats.avgDuration}s`;
-            document.getElementById('coverage').textContent = `${stats.coverage}%`;
+            const s = await fetchStats();
+            document.getElementById('totalTests').textContent = s.totalTests;
+            document.getElementById('passRate').textContent = s.passRate + '%';
+            document.getElementById('avgDuration').textContent = s.avgDuration + 's';
+            document.getElementById('coverage').textContent = s.coverage + '%';
             document.getElementById('totalTestsChange').innerHTML = '<i class="fas fa-arrow-up"></i> +4';
             document.getElementById('passRateChange').innerHTML = '<i class="fas fa-arrow-up"></i> +2.5%';
             document.getElementById('avgDurationChange').innerHTML = '<i class="fas fa-arrow-down"></i> -0.3s';
             document.getElementById('coverageChange').innerHTML = '<i class="fas fa-arrow-up"></i> +5%';
-            const passedPercent = (stats.passed / stats.totalTests * 100).toFixed(0);
-            const failedPercent = (stats.failed / stats.totalTests * 100).toFixed(0);
-            document.getElementById('passedCount').textContent = `${stats.passed}/${stats.totalTests} (${passedPercent}%)`;
-            document.getElementById('failedCount').textContent = `${stats.failed}/${stats.totalTests} (${failedPercent}%)`;
-            document.getElementById('passedBar').style.width = `${passedPercent}%`;
-            document.getElementById('failedBar').style.width = `${failedPercent}%`;
+            const pp = (s.passed / s.totalTests * 100).toFixed(0), fp = (s.failed / s.totalTests * 100).toFixed(0);
+            document.getElementById('passedCount').textContent = `${s.passed}/${s.totalTests} (${pp}%)`;
+            document.getElementById('failedCount').textContent = `${s.failed}/${s.totalTests} (${fp}%)`;
+            document.getElementById('passedBar').style.width = pp + '%';
+            document.getElementById('failedBar').style.width = fp + '%';
         }
 
         async function updateTestList() {
-            const tests = await fetchTests();
-            const testList = document.getElementById('testList');
-            let totalDuration = 0;
-            testList.innerHTML = tests.map(test => {
-                totalDuration += test.duration;
-                const statusClass = test.status === 'passed' ? 'passed' : 'failed';
-                const icon = test.status === 'passed' ? 'check' : 'times';
-                const duration = test.duration >= 5000 ? 'timeout' : `${test.duration}ms`;
-                return `<li class="test-item"><div class="test-status ${statusClass}"><i class="fas fa-${icon}"></i></div><div class="test-info"><div class="test-name">${test.name}</div><div class="test-duration">${duration}</div></div></li>`;
-            }).join('');
-            document.getElementById('totalDuration').textContent = `${(totalDuration / 1000).toFixed(1)}s total`;
+            const tests = await fetchTests(), testList = document.getElementById('testList');
+            let total = 0;
+            testList.innerHTML = tests.map(t => { total += t.duration; const sc = t.status === 'passed' ? 'passed' : 'failed', ic = t.status === 'passed' ? 'check' : 'times', dur = t.duration >= 5000 ? 'timeout' : t.duration + 'ms'; return `<li class="test-item"><div class="test-status ${sc}"><i class="fas fa-${ic}"></i></div><div class="test-info"><div class="test-name">${t.name}</div><div class="test-duration">${dur}</div></div></li>`; }).join('');
+            document.getElementById('totalDuration').textContent = (total / 1000).toFixed(1) + 's total';
         }
 
         const commands = {
-            help: { execute: () => `\n<span style="color:var(--primary-color);font-weight:bold">📚 QA-Hub Commands:</span>\n\n  <span class="cmd-clickable" data-cmd="run-tests">run-tests</span>   - Execute all tests\n  <span class="cmd-clickable" data-cmd="get-tests">get-tests</span>   - Fetch test list\n  <span class="cmd-clickable" data-cmd="get-stats">get-stats</span>   - Get statistics\n  <span class="cmd-clickable" data-cmd="health">health</span>      - Check API status\n  <span class="cmd-clickable" data-cmd="clear">clear</span>       - Clear terminal\n\n<span style="color:var(--subtle-text-color)">API: ${apiOnline ? '<span style="color:var(--success-color)">● Online</span>' : '<span style="color:var(--warning-color)">● Demo</span>'}</span>\n` },
-            'run-tests': { execute: async () => { appendOutput(`\n<span style="color:var(--primary-color)">$ POST /api/tests/run</span>\n\nRunning tests...\n`); const result = await runTests(); for (const test of result.results) { await delay(300); const icon = test.status === 'passed' ? '✓' : '✗'; const color = test.status === 'passed' ? 'var(--success-color)' : 'var(--error-color)'; appendOutput(`  <span style="color:${color}">${icon}</span> ${test.name}\n`); } await updateDashboard(); await updateTestList(); return `\n<span style="color:var(--success-color)">✓ ${result.message}</span>\n`; } },
-            'get-tests': { execute: async () => { const tests = await fetchTests(); let output = `\n<span style="color:var(--primary-color)">$ GET /api/tests</span>\n\n`; tests.forEach(test => { const icon = test.status === 'passed' ? '✓' : '✗'; const color = test.status === 'passed' ? 'var(--success-color)' : 'var(--error-color)'; output += `  <span style="color:${color}">${icon}</span> [${test.id}] ${test.name}\n`; }); return output; } },
-            'get-stats': { execute: async () => { const stats = await fetchStats(); return `\n<span style="color:var(--primary-color)">$ GET /api/stats</span>\n\n  Total Tests:  ${stats.totalTests}\n  Pass Rate:    ${stats.passRate}%\n  Avg Duration: ${stats.avgDuration}s\n  Coverage:     ${stats.coverage}%\n`; } },
-            health: { execute: async () => { const isOnline = await checkApiHealth(); return `\n<span style="color:var(--primary-color)">$ GET /api/health</span>\n\nAPI Status: ${isOnline ? '<span style="color:var(--success-color)">● Online</span>' : '<span style="color:var(--warning-color)">● Demo Mode</span>'}\nEndpoint:   ${API_BASE_URL}\n`; } },
+            help: { execute: () => `\n<span style="color:var(--primary-color);font-weight:bold">📚 Commands:</span>\n\n  <span class="cmd-clickable" data-cmd="run-tests">run-tests</span>  - Execute tests\n  <span class="cmd-clickable" data-cmd="get-stats">get-stats</span>  - Get statistics\n  <span class="cmd-clickable" data-cmd="get-tests">get-tests</span>  - List tests\n  <span class="cmd-clickable" data-cmd="health">health</span>     - API status\n  <span class="cmd-clickable" data-cmd="clear">clear</span>      - Clear\n\nAPI: ${apiOnline ? '<span style="color:var(--success-color)">● Online</span>' : '<span style="color:var(--warning-color)">● Demo</span>'}\n` },
+            'run-tests': { execute: async () => { appendOutput('\n<span style="color:var(--primary-color)">Running tests...</span>\n'); const r = await runTestsAPI(); for (const t of r.results) { await new Promise(r => setTimeout(r, 200)); const c = t.status === 'passed' ? 'var(--success-color)' : 'var(--error-color)', i = t.status === 'passed' ? '✓' : '✗'; appendOutput(`  <span style="color:${c}">${i}</span> ${t.name}\n`); } await updateDashboard(); await updateTestList(); return `\n<span style="color:var(--success-color)">✓ Done</span>\n`; } },
+            'get-stats': { execute: async () => { const s = await fetchStats(); return `\n<span style="color:var(--primary-color)">Stats:</span>\n  Tests: ${s.totalTests}\n  Pass Rate: ${s.passRate}%\n  Duration: ${s.avgDuration}s\n  Coverage: ${s.coverage}%\n`; } },
+            'get-tests': { execute: async () => { const t = await fetchTests(); let o = '\n<span style="color:var(--primary-color)">Tests:</span>\n'; t.forEach(x => { const c = x.status === 'passed' ? 'var(--success-color)' : 'var(--error-color)', i = x.status === 'passed' ? '✓' : '✗'; o += `  <span style="color:${c}">${i}</span> ${x.name}\n`; }); return o; } },
+            health: { execute: async () => { const on = await checkApiHealth(); return `\nAPI: ${on ? '<span style="color:var(--success-color)">● Online</span>' : '<span style="color:var(--warning-color)">● Demo</span>'}\nEndpoint: ${API_BASE_URL}\n`; } },
             clear: { execute: () => { terminalOutput.innerHTML = ''; return ''; } }
         };
 
-        function appendOutput(text) { terminalOutput.innerHTML += text; terminalOutput.scrollTop = terminalOutput.scrollHeight; }
-        function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
-        async function executeCommand(cmd) { const trimmedCmd = cmd.trim().toLowerCase(); if (!trimmedCmd) return; appendOutput(`<span style="color:var(--success-color)">qa-hub $</span> ${cmd}\n`); if (commands[trimmedCmd]) { const result = await commands[trimmedCmd].execute(); if (result) appendOutput(result + '\n'); } else { appendOutput(`<span style="color:var(--error-color)">Unknown: ${cmd}</span>\nType <span class="cmd-clickable" data-cmd="help">help</span>\n`); } terminalOutput.scrollTop = terminalOutput.scrollHeight; }
-        async function runAllTests() { const btn = document.getElementById('runTestsBtn'); btn.innerHTML = '<div class="loading"></div> Running...'; await executeCommand('run-tests'); btn.innerHTML = '<i class="fas fa-play"></i>Run All Tests'; }
+        function appendOutput(t) { terminalOutput.innerHTML += t; terminalOutput.scrollTop = terminalOutput.scrollHeight; }
+        async function executeCommand(c) { const cmd = c.trim().toLowerCase(); if (!cmd) return; appendOutput(`<span style="color:var(--success-color)">qa-hub $</span> ${c}\n`); if (commands[cmd]) { const r = await commands[cmd].execute(); if (r) appendOutput(r + '\n'); } else appendOutput(`<span style="color:var(--error-color)">Unknown: ${c}</span>\nType <span class="cmd-clickable" data-cmd="help">help</span>\n`); terminalOutput.scrollTop = terminalOutput.scrollHeight; }
+        async function runAllTests() { const b = document.getElementById('runTestsBtn'); b.innerHTML = '<div class="loading"></div> Running...'; await executeCommand('run-tests'); b.innerHTML = '<i class="fas fa-play"></i>Run All Tests'; }
 
-        terminalInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { const cmd = terminalInput.value; terminalInput.value = ''; await executeCommand(cmd); } });
-        actionButtons.forEach(btn => { btn.addEventListener('click', async () => { await executeCommand(btn.dataset.cmd); }); });
-        terminalOutput.addEventListener('click', async (e) => { if (e.target.classList.contains('cmd-clickable')) { await executeCommand(e.target.dataset.cmd); } });
-
+        terminalInput.addEventListener('keydown', async e => { if (e.key === 'Enter') { const c = terminalInput.value; terminalInput.value = ''; await executeCommand(c); } });
+        document.querySelectorAll('.terminal-action-btn').forEach(b => b.addEventListener('click', () => executeCommand(b.dataset.cmd)));
+        terminalOutput.addEventListener('click', e => { if (e.target.classList.contains('cmd-clickable')) executeCommand(e.target.dataset.cmd); });
         window.addEventListener('load', async () => { await checkApiHealth(); await updateDashboard(); await updateTestList(); await executeCommand('help'); terminalInput.focus(); });
     </script>
 </body>
