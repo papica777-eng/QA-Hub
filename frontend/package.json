@@ -1,0 +1,12 @@
+{
+  "name": "qa-hub-frontend",
+  "version": "1.0.0",
+  "description": "QA Hub Dashboard - Fullstack QA Management System",
+  "scripts": {
+    "dev": "python -m http.server 3000",
+    "build": "echo 'Static HTML - No build needed'",
+    "preview": "python -m http.server 3000"
+  },
+  "keywords": ["qa", "testing", "bug-tracking", "automation"],
+  "author": "Dimitar Prodromov"
+}

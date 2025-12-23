@@ -64,6 +64,38 @@ class HealthResponse(BaseModel):
     version: str
 
 
+class BugReport(BaseModel):
+    id: Optional[int] = None
+    title: str
+    description: str
+    severity: str  # 'critical', 'high', 'medium', 'low'
+    status: str  # 'open', 'in-progress', 'resolved', 'closed'
+    assignee: Optional[str] = None
+    created_at: Optional[str] = None
+
+
+class TestCase(BaseModel):
+    id: Optional[int] = None
+    title: str
+    description: str
+    steps: str
+    expected_result: str
+    priority: str  # 'p1', 'p2', 'p3', 'p4'
+    status: str  # 'active', 'deprecated'
+    created_at: Optional[str] = None
+
+
+class AutomationReport(BaseModel):
+    id: Optional[int] = None
+    suite_name: str
+    total_tests: int
+    passed: int
+    failed: int
+    duration: int  # milliseconds
+    environment: str
+    created_at: Optional[str] = None
+
+
 # Database initialization
 def init_db():
     """Initialize SQLite database with required tables."""
@@ -95,6 +127,47 @@ def init_db():
         )
     """)
     
+    # Create bugs table
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS bugs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
+            severity TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'open',
+            assignee TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
+    # Create test_cases table
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS test_cases (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
+            steps TEXT NOT NULL,
+            expected_result TEXT NOT NULL,
+            priority TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'active',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
+    # Create automation_reports table
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS automation_reports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            suite_name TEXT NOT NULL,
+            total_tests INTEGER NOT NULL,
+            passed INTEGER NOT NULL,
+            failed INTEGER NOT NULL,
+            duration INTEGER NOT NULL,
+            environment TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
     # Seed initial test data if empty
     cursor.execute("SELECT COUNT(*) FROM tests")
     if cursor.fetchone()[0] == 0:
@@ -114,36 +187,34 @@ def init_db():
             "INSERT INTO tests (name, status, duration) VALUES (?, ?, ?)",
             seed_tests
         )
-    
-    conn.commit()
-    conn.close()
 
+    # Seed bugs
+    cursor.execute("SELECT COUNT(*) FROM bugs")
+    if cursor.fetchone()[0] == 0:
+        seed_bugs = [
+            ("Login button not responsive on mobile", "Button click not registering on iOS devices", "high", "open", "John Doe"),
+            ("Search returns empty results", "Search functionality returns no results for valid queries", "critical", "in-progress", "Jane Smith"),
+            ("UI misalignment in profile page", "Profile picture overlaps with text content", "medium", "open", None),
+        ]
+        cursor.executemany(
+            "INSERT INTO bugs (title, description, severity, status, assignee) VALUES (?, ?, ?, ?, ?)",
+            seed_bugs
+        )
 
-def get_db_connection():
-    """Get database connection."""
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-
-# API Routes
-@app.on_event("startup")
-async def startup_event():
-    """Initialize database on startup."""
-    init_db()
-
-
-@app.get("/api/health", response_model=HealthResponse, tags=["Health"])
-async def health_check():
-    """Check API health status."""
-    return HealthResponse(
-        status="healthy",
-        timestamp=datetime.now().isoformat(),
-        version="1.0.0"
-    )
-
-
-@app.get("/api/stats", response_model=TestStats, tags=["Statistics"])
+    # Seed test cases
+    cursor.execute("SELECT COUNT(*) FROM test_cases")
+    if cursor.fetchone()[0] == 0:
+        seed_cases = [
+            ("Login with valid credentials", "Verify user can login with correct credentials", 
+             "1. Navigate to login page\n2. Enter valid username\n3. Enter valid password\n4. Click login button",
+             "User is successfully logged in and redirected to dashboard", "p1", "active"),
+            ("Search functionality", "Verify search returns relevant results",
+             "1. Navigate to search page\n2. Enter search query\n3. Click search button",
+             "Relevant search results are displayed", "p2", "active"),
+        ]
+        cursor.executemany(
+            "INSERT INTO test_cases (title, description, steps, expected_result, priority, status) VALUES (?, ?, ?, ?, ?, ?)",
+            seed_cases
 async def get_stats():
     """Get test statistics from the database."""
     conn = get_db_connection()
@@ -287,13 +358,190 @@ async def clear_tests():
     return {"message": f"Cleared {deleted} test results"}
 
 
-# Root redirect to docs
-@app.get("/")
-async def root():
-    """Redirect to API documentation."""
-    return {"message": "QA-Hub API", "docs": "/api/docs"}
+# Bug Reports Endpoints
+@app.get("/api/bugs", response_model=List[BugReport], tags=["Bugs"])
+async def get_bugs():
+    """Get all bug reports."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM bugs ORDER BY created_at DESC")
+    bugs = []
+    for row in cursor.fetchall():
+        bugs.append(BugReport(
+            id=row["id"],
+            title=row["title"],
+            description=row["description"],
+            severity=row["severity"],
+            status=row["status"],
+            assignee=row["assignee"],
+            created_at=row["created_at"]
+        ))
+
+    conn.close()
+    return bugs
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+@app.post("/api/bugs", response_model=BugReport, tags=["Bugs"])
+async def create_bug(bug: BugReport):
+    """Create a new bug report."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO bugs (title, description, severity, status, assignee) VALUES (?, ?, ?, ?, ?)",
+        (bug.title, bug.description, bug.severity, bug.status, bug.assignee)
+    )
+
+    bug_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+
+    bug.id = bug_id
+    return bug
+
+
+@app.put("/api/bugs/{bug_id}", response_model=BugReport, tags=["Bugs"])
+async def update_bug(bug_id: int, bug: BugReport):
+    """Update a bug report."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE bugs SET title=?, description=?, severity=?, status=?, assignee=? WHERE id=?",
+        (bug.title, bug.description, bug.severity, bug.status, bug.assignee, bug_id)
+    )
+
+    if cursor.rowcount == 0:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Bug not found")
+
+    conn.commit()
+    conn.close()
+
+    bug.id = bug_id
+    return bug
+
+
+@app.delete("/api/bugs/{bug_id}", tags=["Bugs"])
+async def delete_bug(bug_id: int):
+    """Delete a bug report."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM bugs WHERE id = ?", (bug_id,))
+
+    if cursor.rowcount == 0:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Bug not found")
+
+    conn.commit()
+    conn.close()
+
+    return {"message": f"Bug {bug_id} deleted successfully"}
+
+
+# Test Cases Endpoints
+@app.get("/api/test-cases", response_model=List[TestCase], tags=["Test Cases"])
+async def get_test_cases():
+    """Get all test cases."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM test_cases ORDER BY created_at DESC")
+    cases = []
+    for row in cursor.fetchall():
+        cases.append(TestCase(
+            id=row["id"],
+            title=row["title"],
+            description=row["description"],
+            steps=row["steps"],
+            expected_result=row["expected_result"],
+            priority=row["priority"],
+            status=row["status"],
+            created_at=row["created_at"]
+        ))
+
+    conn.close()
+    return cases
+
+
+@app.post("/api/test-cases", response_model=TestCase, tags=["Test Cases"])
+async def create_test_case(test_case: TestCase):
+    """Create a new test case."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO test_cases (title, description, steps, expected_result, priority, status) VALUES (?, ?, ?, ?, ?, ?)",
+        (test_case.title, test_case.description, test_case.steps, test_case.expected_result, test_case.priority, test_case.status)
+    )
+
+    case_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+
+    test_case.id = case_id
+    return test_case
+
+
+@app.delete("/api/test-cases/{case_id}", tags=["Test Cases"])
+async def delete_test_case(case_id: int):
+    """Delete a test case."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM test_cases WHERE id = ?", (case_id,))
+
+    if cursor.rowcount == 0:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Test case not found")
+
+    conn.commit()
+    conn.close()
+
+    return {"message": f"Test case {case_id} deleted successfully"}
+
+
+# Automation Reports Endpoints
+@app.get("/api/reports", response_model=List[AutomationReport], tags=["Reports"])
+async def get_reports():
+    """Get all automation reports."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM automation_reports ORDER BY created_at DESC LIMIT 20")
+    reports = []
+    for row in cursor.fetchall():
+        reports.append(AutomationReport(
+            id=row["id"],
+            suite_name=row["suite_name"],
+            total_tests=row["total_tests"],
+            passed=row["passed"],
+            failed=row["failed"],
+            duration=row["duration"],
+            environment=row["environment"],
+            created_at=row["created_at"]
+        ))
+
+    conn.close()
+    return reports
+
+
+@app.post("/api/reports", response_model=AutomationReport, tags=["Reports"])
+async def create_report(report: AutomationReport):
+    """Create a new automation report."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO automation_reports (suite_name, total_tests, passed, failed, duration, environment) VALUES (?, ?, ?, ?, ?, ?)",
+        (report.suite_name, report.total_tests, report.passed, report.failed, report.duration, report.environment)
+    )
+
+    report_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+
+    report.id = report_id
+    return report
