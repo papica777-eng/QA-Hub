@@ -86,12 +86,12 @@ class BugReport(BaseModel):
 
 class TestCase(BaseModel):
     id: Optional[int] = None
-    title: str
-    description: str
-    steps: str
-    expected_result: str
-    priority: str
-    status: str
+    title: Optional[str] = None
+    description: Optional[str] = None
+    steps: Optional[str] = None
+    expected_result: Optional[str] = None
+    priority: Optional[str] = None
+    status: Optional[str] = None
     created_at: Optional[str] = None
 
 
@@ -291,13 +291,38 @@ async def get_test_cases():
 
 @app.post("/api/test-cases", response_model=TestCase)
 async def create_test_case(tc: TestCase):
+    normalized_priority = tc.priority or "unspecified"
+    normalized_status = tc.status or "active"
+    normalized_title = tc.title or "Untitled test case"
+    normalized_description = tc.description or ""
+    normalized_steps = tc.steps or ""
+    normalized_expected = tc.expected_result or ""
     conn = get_db()
     cur = conn.cursor()
-    cur.execute("INSERT INTO test_cases (title, description, steps, expected_result, priority, status) VALUES (?, ?, ?, ?, ?, ?)", (tc.title, tc.description, tc.steps, tc.expected_result, tc.priority, tc.status))
+    cur.execute(
+        "INSERT INTO test_cases (title, description, steps, expected_result, priority, status) VALUES (?, ?, ?, ?, ?, ?)",
+        (
+            normalized_title,
+            normalized_description,
+            normalized_steps,
+            normalized_expected,
+            normalized_priority,
+            normalized_status,
+        ),
+    )
     tc.id = cur.lastrowid
     conn.commit()
     conn.close()
-    return tc
+    return TestCase(
+        id=tc.id,
+        title=normalized_title,
+        description=normalized_description,
+        steps=normalized_steps,
+        expected_result=normalized_expected,
+        priority=normalized_priority,
+        status=normalized_status,
+        created_at=tc.created_at,
+    )
 
 
 @app.delete("/api/test-cases/{case_id}")

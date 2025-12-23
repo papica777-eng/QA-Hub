@@ -432,23 +432,23 @@
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-item active" onclick="showPage('dashboard')">
+        <div class="nav-item active" onclick="showPage('dashboard', this)">
             <i class="fas fa-th-large"></i>
             <span>Dashboard</span>
         </div>
-        <div class="nav-item" onclick="showPage('tests')">
+        <div class="nav-item" onclick="showPage('tests', this)">
             <i class="fas fa-flask"></i>
             <span>Test Results</span>
         </div>
-        <div class="nav-item" onclick="showPage('bugs')">
+        <div class="nav-item" onclick="showPage('bugs', this)">
             <i class="fas fa-bug"></i>
             <span>Bug Reports</span>
         </div>
-        <div class="nav-item" onclick="showPage('test-cases')">
+        <div class="nav-item" onclick="showPage('test-cases', this)">
             <i class="fas fa-clipboard-list"></i>
             <span>Test Cases</span>
         </div>
-        <div class="nav-item" onclick="showPage('reports')">
+        <div class="nav-item" onclick="showPage('reports', this)">
             <i class="fas fa-chart-bar"></i>
             <span>Automation Reports</span>
         </div>
@@ -659,11 +659,11 @@
             <div class="modal-body">
                 <form id="bugForm">
                     <div class="form-group">
-                        <label class="form-label">Title *</label>
+                        <label class="form-label">Title (optional)</label>
                         <input type="text" class="form-input" id="bugTitle" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Description *</label>
+                        <label class="form-label">Description (optional)</label>
                         <textarea class="form-textarea" id="bugDescription" required></textarea>
                     </div>
                     <div class="form-group">
@@ -707,24 +707,25 @@
             <div class="modal-body">
                 <form id="testCaseForm">
                     <div class="form-group">
-                        <label class="form-label">Title *</label>
-                        <input type="text" class="form-input" id="caseTitle" required>
+                        <label class="form-label">Title (optional)</label>
+                        <input type="text" class="form-input" id="caseTitle">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Description *</label>
-                        <textarea class="form-textarea" id="caseDescription" required></textarea>
+                        <label class="form-label">Description (optional)</label>
+                        <textarea class="form-textarea" id="caseDescription"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Steps to Reproduce *</label>
-                        <textarea class="form-textarea" id="caseSteps" required></textarea>
+                        <label class="form-label">Steps to Reproduce (optional)</label>
+                        <textarea class="form-textarea" id="caseSteps"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Expected Result *</label>
-                        <textarea class="form-textarea" id="caseExpected" required></textarea>
+                        <label class="form-label">Expected Result (optional)</label>
+                        <textarea class="form-textarea" id="caseExpected"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Priority *</label>
-                        <select class="form-select" id="casePriority" required>
+                        <label class="form-label">Priority (optional)</label>
+                        <select class="form-select" id="casePriority">
+                            <option value="">No priority (optional)</option>
                             <option value="p4">P4 - Low</option>
                             <option value="p3">P3 - Medium</option>
                             <option value="p2">P2 - High</option>
@@ -735,6 +736,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeTestCaseModal()">Cancel</button>
+                <button class="btn" onclick="downloadTestCaseDraft()"><i class="fas fa-download"></i> Download</button>
                 <button class="btn btn-primary" onclick="submitTestCase()">Create Test Case</button>
             </div>
         </div>
@@ -742,7 +744,10 @@
 
     <script>
         const API_BASE_URL = 'http://localhost:8000/api';
+        const REFRESH_INTERVAL = 5000;
         let apiOnline = false;
+        let activePage = 'dashboard';
+        let refreshTimer = null;
 
         // Check API health
         async function checkHealth() {
@@ -763,17 +768,40 @@
         }
 
         // Page navigation
-        function showPage(pageId) {
+        function showPage(pageId, navItem) {
+            activePage = pageId;
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            event.target.closest('.nav-item').classList.add('active');
+            const resolvedNav = navItem || null;
+            if (resolvedNav) {
+                resolvedNav.classList.add('active');
+            }
 
-            if (pageId === 'dashboard') loadDashboard();
-            else if (pageId === 'tests') loadTests();
-            else if (pageId === 'bugs') loadBugs();
-            else if (pageId === 'test-cases') loadTestCases();
-            else if (pageId === 'reports') loadReports();
+            startRealtimeUpdates();
+        }
+
+        function refreshCurrentPageData() {
+            if (activePage === 'dashboard') {
+                loadDashboard();
+            } else if (activePage === 'tests') {
+                loadTests();
+            } else if (activePage === 'bugs') {
+                loadBugs();
+            } else if (activePage === 'test-cases') {
+                loadTestCases();
+            } else if (activePage === 'reports') {
+                loadReports();
+            }
+        }
+
+        function startRealtimeUpdates() {
+            if (refreshTimer) {
+                clearInterval(refreshTimer);
+            }
+
+            refreshCurrentPageData();
+            refreshTimer = setInterval(refreshCurrentPageData, REFRESH_INTERVAL);
         }
 
         // Load dashboard data
@@ -964,15 +992,20 @@
             document.getElementById('testCaseForm').reset();
         }
 
-        async function submitTestCase() {
-            const testCase = {
-                title: document.getElementById('caseTitle').value,
-                description: document.getElementById('caseDescription').value,
-                steps: document.getElementById('caseSteps').value,
-                expected_result: document.getElementById('caseExpected').value,
-                priority: document.getElementById('casePriority').value,
+        function buildTestCasePayload() {
+            const titleValue = document.getElementById('caseTitle').value;
+            return {
+                title: titleValue || 'Untitled test case',
+                description: document.getElementById('caseDescription').value || '',
+                steps: document.getElementById('caseSteps').value || '',
+                expected_result: document.getElementById('caseExpected').value || '',
+                priority: document.getElementById('casePriority').value || 'unspecified',
                 status: 'active'
             };
+        }
+
+        async function submitTestCase() {
+            const testCase = buildTestCasePayload();
 
             try {
                 await fetch(`${API_BASE_URL}/test-cases`, {
@@ -985,6 +1018,18 @@
             } catch {
                 alert('Failed to create test case');
             }
+        }
+
+        function downloadTestCaseDraft() {
+            const testCase = buildTestCasePayload();
+            const data = JSON.stringify(testCase, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const link = document.createElement('a');
+            const safeTitle = (testCase.title || 'test-case').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'test-case';
+            link.href = URL.createObjectURL(blob);
+            link.download = `${safeTitle}.json`;
+            link.click();
+            URL.revokeObjectURL(link.href);
         }
 
         async function deleteTestCase(id) {
@@ -1028,7 +1073,7 @@
         // Initialize
         window.addEventListener('load', async () => {
             await checkHealth();
-            loadDashboard();
+            startRealtimeUpdates();
         });
     </script>
 </body>
