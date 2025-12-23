@@ -215,12 +215,6 @@ def init_db():
         cursor.executemany(
             "INSERT INTO test_cases (title, description, steps, expected_result, priority, status) VALUES (?, ?, ?, ?, ?, ?)",
             seed_cases
-        )
-
-    conn.commit()
-    conn.close()
-
-
 async def get_stats():
     """Get test statistics from the database."""
     conn = get_db_connection()
