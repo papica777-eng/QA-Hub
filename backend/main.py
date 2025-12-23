@@ -8,9 +8,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
+from contextlib import asynccontextmanager
 import sqlite3
 import random
 import os
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    init_db()
+    yield
+    # Shutdown (nothing needed)
+
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -18,7 +28,8 @@ app = FastAPI(
     description="Backend API for QA-Hub Test Automation Dashboard",
     version="1.0.0",
     docs_url="/api/docs",
-    redoc_url="/api/redoc"
+    redoc_url="/api/redoc",
+    lifespan=lifespan
 )
 
 # CORS middleware
@@ -183,11 +194,6 @@ def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
-
-
-@app.on_event("startup")
-async def startup():
-    init_db()
 
 
 @app.get("/api/health", response_model=HealthResponse)
